@@ -84,6 +84,24 @@
             color: var(--text-primary);
         }
 
+        /* Caret para efecto de tipado */
+        .caret {
+            display: inline-block;
+            margin-left: 6px;
+            color: var(--text-primary);
+            animation: blink 1s steps(2,end) infinite;
+            transition: opacity 0.4s ease, transform 0.4s ease; /* transición para fade-out y desplazamiento */
+        }
+
+        /* Cuando añadimos esta clase, la caret hace un fade-out con desplazamiento y deja de parpadear */
+        .caret.fade-out {
+            opacity: 0;
+            transform: translateY(-6px);
+            animation: none;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
         .subtitle { color: var(--text-secondary); font-weight: 300; font-size: 1.1rem; }
 
         /* Componentes UI Genéricos */
@@ -249,8 +267,8 @@
             <div class="logo-container">
                 <img src="logo.jpg" alt="Digitalmente Vzla Logo" class="logo-img">
             </div>
-            <h1>Digitalmente Vzla</h1>
-            <p class="subtitle">Diseño Gráfico & Soluciones Digitales Creativas</p>
+            <h1><span id="typed" aria-live="polite"></span><span class="caret">|</span></h1>
+            <p class="subtitle"><span id="subtitle-typed" aria-live="polite"></span></p>
         </header>
 
         <a href="https://wa.me/584121336578?text=¡Hola!%20Quiero%20información%20sobre%20sus%20productos." target="_blank" class="cta-whatsapp">
@@ -300,14 +318,56 @@
     </main>
 
     <script>
-        // Micro-interacción simple para un efecto de carga suave adicional
+        // Micro-interacción + efecto de escritura (título + subtítulo)
         document.addEventListener("DOMContentLoaded", () => {
+            // Animación de las cards
             const cards = document.querySelectorAll('.glass-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 // La animación base es un poco más tardía para que el hover funcione mejor en la carga inicial.
                 card.style.animation = `fadeUp 0.6s ease-out ${0.5 + (index * 0.1)}s forwards`;
             });
+
+            // Efecto de escritura para el h1 y luego el subtítulo
+            const typingText = 'Digitalmente Vzla';
+            const subtitleText = 'Diseño Gráfico & Soluciones Digitales Creativas';
+            const typedEl = document.getElementById('typed');
+            const subtitleEl = document.getElementById('subtitle-typed');
+            const caretEl = document.querySelector('.caret');
+            let idx = 0;
+            const typingSpeed = 90; // ms por carácter
+
+            function typeTitle() {
+                if (idx <= typingText.length) {
+                    typedEl.textContent = typingText.slice(0, idx);
+                    idx++;
+                    setTimeout(typeTitle, typingSpeed);
+                } else {
+                    // Al terminar, hacer fade-out de la caret y luego ocultarla
+                    if (caretEl) {
+                        caretEl.classList.add('fade-out');
+                        // Al terminar la transición, esconder del flujo (opcional)
+                        caretEl.addEventListener('transitionend', () => {
+                            caretEl.style.display = 'none';
+                        }, { once: true });
+                    }
+                    // Iniciar subtítulo después de un pequeño retardo
+                    setTimeout(typeSubtitle, 300);
+                }
+            }
+
+            let subIdx = 0;
+            function typeSubtitle() {
+                if (!subtitleEl) return;
+                if (subIdx <= subtitleText.length) {
+                    subtitleEl.textContent = subtitleText.slice(0, subIdx);
+                    subIdx++;
+                    setTimeout(typeSubtitle, typingSpeed);
+                }
+            }
+
+            // Iniciar la escritura del título un poco después para que otras animaciones se muestren
+            setTimeout(typeTitle, 300);
         });
     </script>
 </body>
