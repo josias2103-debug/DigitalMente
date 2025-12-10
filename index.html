@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalmente Vzla | Diseño & Experiencias Digitales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta extraída del Logo */
+            --brand-gradient: linear-gradient(135deg, #00c6ff, #9228ee, #ff007f, #ff9d00);
+            --bg-dark: #05050A; /* Negro profundo con un toque azulado */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --section-spacing: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Fondo Futurista Animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background: var(--brand-gradient);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: bgPulse 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { transform: translate(-50%, -50%) scale(0.8) rotate(0deg); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1.1) rotate(15deg); opacity: 0.2; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px; /* Ancho óptimo para estilo Link-in-Bio */
+            padding: 2rem 1.5rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Header & Perfil */
+        .profile-header {
+            margin-bottom: var(--section-spacing);
+            animation: fadeDown 0.8s ease-out;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            padding: 4px; /* Espacio para el borde gradiente */
+            background: var(--brand-gradient);
+            box-shadow: 0 0 30px rgba(146, 40, 238, 0.3);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-dark); /* Separa la imagen del borde gradiente */
+            background-color: var(--bg-dark);
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        /* Componentes UI Genéricos */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px -10px rgba(146, 40, 238, 0.2);
+        }
+
+        /* Botón Principal (WhatsApp) */
+        .cta-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: var(--section-spacing);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            position: relative;
+            border-radius: 50px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.4s ease;
+            animation: fadeUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .cta-whatsapp::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: var(--brand-gradient);
+        }
+
+        .cta-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 0, 127, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        /* Sección de Servicios */
+        .services-section {
+            margin-bottom: var(--section-spacing);
+            animation: fadeUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 1rem 1.5rem;
+        }
+
+        .service-icon {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-info h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .service-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Redes Sociales */
+        .social-section {
+            animation: fadeUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 16px;
+        }
+
+        .social-link:hover {
+            background: var(--brand-gradient);
+            border-color: transparent;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            animation: fadeUp 0.8s ease-out 0.8s backwards;
+        }
+
+        /* Animaciones de Entrada */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .container { max-width: 600px; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
+            .service-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .service-icon { margin-right: 0; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header class="profile-header">
+            <div class="logo-container">
+                <img src="logo.jpg" alt="Digitalmente Vzla Logo" class="logo-img">
+            </div>
+            <h1>Digitalmente Vzla</h1>
+            <p class="subtitle">Diseño Gráfico & Soluciones Digitales Creativas</p>
+        </header>
+
+        <a href="https://wa.me/584121336578" target="_blank" class="cta-whatsapp">
+            <span style="margin-right: 8px">➤</span> Cotizar Proyecto vía WhatsApp
+        </a>
+
+        <section class="services-section">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="services-grid">
+                <div class="glass-card service-card">
+                    <div class="service-icon">❖</div>
+                    <div class="service-info">
+                        <h3>Branding e Identidad</h3>
+                        <p>Logos y sistemas visuales únicos.</p>
+                    </div>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-info">
+                        <h3>Diseño para Redes</h3>
+                        <p>Contenido visual de alto impacto.</p>
+                    </div>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">❒</div>
+                    <div class="service-info">
+                        <h3>Diseño de Landing Pages</h3>
+                        <p>Estrategias web enfocadas en la conversión y resultados inmediatos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h2 class="section-title">Conecta Conmigo</h2>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/digitalmentevzla/" target="_blank" class="glass-card social-link" aria-label="Instagram">IG</a>
+                <a href="https://tiktok.com/@tu_usuario" target="_blank" class="glass-card social-link" aria-label="TikTok">TT</a>
+                <a href="https://pinterest.com/tu_usuario" target="_blank" class="glass-card social-link" aria-label="Pinterest">PT</a>
+                <a href="https://behance.net/kleidysgonzalez" target="_blank" class="glass-card social-link" aria-label="Behance">BE</a>
+            </div>
+        </section>
+
+        <footer>
+            © 2024 Digitalmente Vzla. Diseñado hacia el futuro.
+        </footer>
+    </main>
+
+    <script>
+        // Micro-interacción simple para un efecto de carga suave adicional
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.animation = `fadeUp 0.6s ease-out ${0.3 + (index * 0.1)}s forwards`;
+            });
+        });
+    </script>
+</body>
+</html>
