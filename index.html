@@ -7,21 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta extraída del Logo */
             --brand-gradient: linear-gradient(135deg, #00c6ff, #9228ee, #ff007f, #ff9d00);
-            --bg-dark: #05050A; /* Negro profundo con un toque azulado */
+            --bg-dark: #05050A;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-primary: #ffffff;
             --text-secondary: #a0a0a0;
             --section-spacing: 3rem;
+            --card-transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición global para cards */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Outfit', sans-serif;
@@ -36,7 +32,6 @@
             position: relative;
         }
 
-        /* Fondo Futurista Animado */
         body::before {
             content: '';
             position: fixed;
@@ -59,7 +54,7 @@
 
         .container {
             width: 100%;
-            max-width: 480px; /* Ancho óptimo para estilo Link-in-Bio */
+            max-width: 480px;
             padding: 2rem 1.5rem;
             text-align: center;
             z-index: 1;
@@ -72,23 +67,13 @@
         }
 
         .logo-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            padding: 4px; /* Espacio para el borde gradiente */
-            background: var(--brand-gradient);
-            box-shadow: 0 0 30px rgba(146, 40, 238, 0.3);
+            width: 120px; height: 120px; margin: 0 auto 1.5rem; border-radius: 50%; padding: 4px;
+            background: var(--brand-gradient); box-shadow: 0 0 30px rgba(146, 40, 238, 0.3);
         }
 
         .logo-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--bg-dark); /* Separa la imagen del borde gradiente */
-            background-color: var(--bg-dark);
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--bg-dark); background-color: var(--bg-dark);
         }
 
         h1 {
@@ -96,70 +81,34 @@
             font-size: 2rem;
             letter-spacing: -0.5px;
             margin-bottom: 0.5rem;
-            background: var(--brand-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-primary);
         }
 
-        .subtitle {
-            color: var(--text-secondary);
-            font-weight: 300;
-            font-size: 1.1rem;
-        }
+        .subtitle { color: var(--text-secondary); font-weight: 300; font-size: 1.1rem; }
 
         /* Componentes UI Genéricos */
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 30px -10px rgba(146, 40, 238, 0.2);
+            background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); border-radius: 20px; transition: var(--card-transition);
         }
 
         /* Botón Principal (WhatsApp) */
         .cta-whatsapp {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 1.2rem;
-            margin-bottom: var(--section-spacing);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: white;
-            position: relative;
-            border-radius: 50px;
-            overflow: hidden;
-            background: var(--glass-bg);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            transition: all 0.4s ease;
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            padding: 1.2rem; margin-bottom: var(--section-spacing); text-decoration: none;
+            font-weight: 700; font-size: 1.1rem; color: white; position: relative;
+            border-radius: 50px; overflow: hidden; background: var(--glass-bg);
+            border: 2px solid transparent; background-clip: padding-box; transition: all 0.4s ease;
             animation: fadeUp 0.8s ease-out 0.2s backwards;
         }
 
         .cta-whatsapp::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -1;
-            margin: -2px;
-            border-radius: inherit;
-            background: var(--brand-gradient);
+            content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1;
+            margin: -2px; border-radius: inherit; background: var(--brand-gradient);
         }
 
         .cta-whatsapp:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(255, 0, 127, 0.4);
-            letter-spacing: 0.5px;
+            transform: scale(1.02); box-shadow: 0 0 40px rgba(255, 0, 127, 0.4); letter-spacing: 0.5px;
         }
 
         /* Sección de Servicios */
@@ -169,79 +118,92 @@
         }
 
         .section-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            display: inline-block;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-secondary); margin-bottom: 1.5rem; display: inline-block;
         }
         
+        /* Contenedor Flex para el efecto de tarjetas */
         .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex; /* Cambiado de grid a flex para el efecto */
+            flex-direction: column;
             gap: 1rem;
         }
 
+        /* Estilos base de la tarjeta */
         .service-card {
             display: flex;
             align-items: center;
             text-align: left;
             padding: 1rem 1.5rem;
+            flex-grow: 1; /* Permite que las tarjetas crezcan */
+            min-height: 80px; /* Altura mínima para que no desaparezcan */
+            transform-origin: center;
+            transition: var(--card-transition);
         }
 
         .service-icon {
-            font-size: 1.8rem;
-            margin-right: 1rem;
-            background: var(--brand-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.8rem; margin-right: 1rem;
+            background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            transition: var(--card-transition);
         }
 
         .service-info h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.2rem;
+            font-size: 1.1rem; font-weight: 500; margin-bottom: 0.2rem;
         }
 
         .service-info p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-size: 0.9rem; color: var(--text-secondary);
+            transition: var(--card-transition);
         }
+
+        /* ------------------------------------- */
+        /* EFECTO DE HOVER: Contracción/Expansión */
+        /* ------------------------------------- */
+        .services-grid:hover .service-card {
+            opacity: 0.5; /* Reduce la opacidad de todas */
+            transform: scale(0.95); /* Contrae ligeramente todas */
+            filter: blur(2px);
+        }
+        
+        .services-grid .service-card:hover,
+        .services-grid .service-card:focus-within { /* Soporte para focus/tabbable */
+            opacity: 1; /* Restaura la opacidad de la actual */
+            transform: scale(1.05); /* Expande la tarjeta actual */
+            filter: blur(0);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px -10px rgba(146, 40, 238, 0.2);
+            z-index: 10; /* Asegura que la tarjeta activa esté encima */
+        }
+        
+        /* Efecto adicional: Mueve el icono y hace más visible la descripción en hover */
+        .services-grid .service-card:hover .service-icon {
+            transform: translateX(5px) scale(1.1);
+        }
+        
+        .services-grid .service-card:hover .service-info p {
+            color: var(--text-primary); /* Hace más visible la descripción */
+        }
+        /* ------------------------------------- */
 
         /* Redes Sociales */
-        .social-section {
-            animation: fadeUp 0.8s ease-out 0.6s backwards;
-        }
+        .social-section { animation: fadeUp 0.8s ease-out 0.6s backwards; }
 
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
-        }
+        .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
 
         .social-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60px;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 16px;
+            display: flex; justify-content: center; align-items: center; height: 60px;
+            font-size: 1.5rem; color: var(--text-primary); text-decoration: none;
+            border-radius: 16px; transition: var(--card-transition);
         }
 
         .social-link:hover {
-            background: var(--brand-gradient);
-            border-color: transparent;
+            background: var(--brand-gradient); border-color: transparent;
+            transform: translateY(-5px);
         }
         
         /* Footer */
         footer {
-            margin-top: 3rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            opacity: 0.6;
+            margin-top: 3rem; font-size: 0.8rem; color: var(--text-secondary); opacity: 0.6;
             animation: fadeUp 0.8s ease-out 0.8s backwards;
         }
 
@@ -258,9 +220,25 @@
         /* Responsive adjustments */
         @media (min-width: 768px) {
             .container { max-width: 600px; }
-            .services-grid { grid-template-columns: repeat(3, 1fr); }
-            .service-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .services-grid { 
+                flex-direction: row; /* Vuelve a Grid/Flex en horizontal para desktop */
+                justify-content: space-between;
+            }
+            .service-card { 
+                flex: 1 1 30%; /* Configuración flex para 3 tarjetas */
+                flex-direction: column; text-align: center; padding: 1.5rem; 
+            }
             .service-icon { margin-right: 0; margin-bottom: 1rem; }
+            
+            /* Ajuste del efecto para desktop */
+            .services-grid:hover .service-card {
+                flex: 1 1 25%; /* Contrae las no-hovered para dar espacio */
+            }
+            .services-grid .service-card:hover,
+            .services-grid .service-card:focus-within {
+                flex: 1 1 50%; /* Expande la hovered */
+                transform: scale(1); /* Quitamos el scale para preferir el efecto flex */
+            }
         }
     </style>
 </head>
@@ -282,21 +260,21 @@
         <section class="services-section">
             <h2 class="section-title">Mis Servicios</h2>
             <div class="services-grid">
-                <div class="glass-card service-card">
+                <div class="glass-card service-card" tabindex="0">
                     <div class="service-icon">❖</div>
                     <div class="service-info">
                         <h3>Branding e Identidad</h3>
                         <p>Logos y sistemas visuales únicos.</p>
                     </div>
                 </div>
-                <div class="glass-card service-card">
+                <div class="glass-card service-card" tabindex="0">
                     <div class="service-icon">⚡</div>
                     <div class="service-info">
                         <h3>Diseño para Redes</h3>
                         <p>Contenido visual de alto impacto.</p>
                     </div>
                 </div>
-                <div class="glass-card service-card">
+                <div class="glass-card service-card" tabindex="0">
                     <div class="service-icon">❒</div>
                     <div class="service-info">
                         <h3>Diseño de Landing Pages</h3>
@@ -327,12 +305,10 @@
             const cards = document.querySelectorAll('.glass-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
-                card.style.animation = `fadeUp 0.6s ease-out ${0.3 + (index * 0.1)}s forwards`;
+                // La animación base es un poco más tardía para que el hover funcione mejor en la carga inicial.
+                card.style.animation = `fadeUp 0.6s ease-out ${0.5 + (index * 0.1)}s forwards`;
             });
         });
     </script>
 </body>
-
 </html>
-
-
